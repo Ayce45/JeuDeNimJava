@@ -4,7 +4,7 @@ public class Coup {
     private int ligne;
     private int nbAllumettes;
 
-    public Coup(int ligne, int nbAllumettes) {
+    public Coup() {
         this.ligne = ligne;
         this.nbAllumettes = nbAllumettes;
     }
@@ -23,5 +23,8 @@ public class Coup {
 
     public void setNbAllumettes(int nbAllumettes) {
         this.nbAllumettes = nbAllumettes;
+    }
+    public boolean isValide(String s, Partie p) {
+        return true;
     }
 }
