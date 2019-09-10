@@ -17,11 +17,11 @@ public class Joueur {
         this.nom = nom;
     }
 
-    public int getNbPartiesGagées() {
-        return nbPartiesGagées;
+    public void addPartiesGagnees() {
+        nbPartiesGagées++;
     }
 
-    public void setNbPartiesGagées(int nbPartiesGagées) {
-        this.nbPartiesGagées = nbPartiesGagées;
+    public int getNbPartiesGagées() {
+        return nbPartiesGagées;
     }
 }

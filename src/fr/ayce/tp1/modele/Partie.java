@@ -1,7 +1,5 @@
 package fr.ayce.tp1.modele;
 
-import java.util.Arrays;
-
 public class Partie {
     private int[][] etat;
     private Joueur joueur;
@@ -25,9 +23,35 @@ public class Partie {
         this.joueur = joueur;
     }
 
+    private boolean isExiste(int val){
+        for(int i = 0 ; i < etat.length;i++) {
+            for (int y = 0; y < etat[i].length; y++) {
+                if (val == etat[i][y])
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public void coup(Coup c) {
-        for (int i = 0; i < c.getNbAllumettes();i++) {
-            this.getEtat()[c.getLigne()][i] = 1;
+        int y = 0;
+        int i = 0;
+        int nbLigne = c.getLigne() - 1;
+        int nbAlumettes = c.getNbAllumettes();
+        while (i < this.getEtat()[nbLigne].length && y < nbAlumettes) {
+            if (this.getEtat()[nbLigne][i] != 1) {
+                this.getEtat()[nbLigne][i] = 1;
+                y++;
+            }
+            i++;
+        }
+    }
+
+    public boolean isGagner() {
+        if (isExiste(0)) {
+            return false;
+        } else {
+            return true;
         }
 
     }

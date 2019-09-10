@@ -23,14 +23,27 @@ public class GestionnaireJeu {
     public void affichePartie() {
         ihm.affiche(partie.getEtat());
     }
+
     public void jouer() {
         int i = 0;
-        while (i < 100) {
+        while (true) {
             if ( (i & 1) == 0 ) {
                 partie.setJoueur(joueur1);
             }
             else {
                 partie.setJoueur(joueur2);
+            }
+            if (partie.isGagner()) {
+                ihm.gagner(partie.getJoueur().getNom());
+                partie.getJoueur().addPartiesGagnees();
+                if (ihm.rejouer()) {
+                    partie = new Partie(partie.getEtat().length);
+                    partie.setJoueur(joueur1);
+                } else {
+                    ihm.resultat(joueur1, joueur2);
+                    System.exit(0);
+                };
+
             }
             affichePartie();
             ihm.joue(partie);
