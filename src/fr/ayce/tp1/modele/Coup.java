@@ -25,6 +25,7 @@ public class Coup {
         this.nbAllumettes = nbAllumettes;
     }
     public boolean isValide(String s, Partie p) {
-        return true;
+        System.out.println(s);
+        return false;
     }
 }

@@ -1,5 +1,9 @@
 package fr.ayce.tp1.modele;
 
+import fr.ayce.tp1.MonException;
+
+import java.security.InvalidParameterException;
+
 public class Partie {
     private int[][] etat;
     private Joueur joueur;
@@ -33,17 +37,20 @@ public class Partie {
         return false;
     }
 
-    public void coup(Coup c) {
+    public void coup(Coup c) throws MonException {
         int y = 0;
         int i = 0;
         int nbLigne = c.getLigne() - 1;
-        int nbAlumettes = c.getNbAllumettes();
-        while (i < this.getEtat()[nbLigne].length && y < nbAlumettes) {
+        int nbAllumettes = c.getNbAllumettes();
+        while (i < this.getEtat()[nbLigne].length && y < nbAllumettes) {
             if (this.getEtat()[nbLigne][i] != 1) {
                 this.getEtat()[nbLigne][i] = 1;
                 y++;
             }
             i++;
+        }
+        if (nbAllumettes != y) {
+            throw new MonException("Houston, we have a problem.");
         }
     }
 
@@ -55,4 +62,6 @@ public class Partie {
         }
 
     }
+
+
 }

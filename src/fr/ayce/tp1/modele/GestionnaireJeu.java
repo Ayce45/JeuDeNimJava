@@ -45,8 +45,18 @@ public class GestionnaireJeu {
                 };
 
             }
-            affichePartie();
-            ihm.joue(partie);
+            boolean isValide = true;
+            while (isValide) {
+                try {
+                    affichePartie();
+                    partie.coup(ihm.coup(partie.getJoueur().getNom()));
+                    isValide = false;
+                } catch (Exception e) {
+                    ihm.clearScreen();
+                    ihm.invalideCoup();
+                }
+            }
+            ihm.clearScreen();
             i++;
         }
 

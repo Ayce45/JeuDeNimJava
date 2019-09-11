@@ -1,5 +1,6 @@
 package fr.ayce.tp1.vue;
 
+import com.jakewharton.fliptables.FlipTable;
 import fr.ayce.tp1.ConsoleColors;
 import fr.ayce.tp1.modele.Coup;
 import fr.ayce.tp1.modele.Joueur;
@@ -12,11 +13,15 @@ public class Ihm {
     private String str;
     private int in;
     private String[] tabStr;
-    private Coup c = new Coup();
-
     public Ihm() {
 
     }
+
+    /**
+     *
+     * @param s
+     * @return String
+     */
     public String nomJoueur(String s) {
         Scanner sc = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir un nom de joueur "+ s +":");
@@ -26,16 +31,34 @@ public class Ihm {
         str = sc.nextLine();
         return str;
     }
+
+    /**
+     *
+     * @return int
+     */
     public int nbLignes() {
         Scanner sc = new Scanner(System.in);
-        System.out.println(ConsoleColors.BLUE + "Veuillez saisir nombre de ligne :");
-        while (!sc.hasNextInt() && sc.nextInt() > 0) {
-            System.out.println(ConsoleColors.RED +"Veuillez saisir nombre de ligne valide:");
-            sc.next();
+        int nbl = 0;
+        while (nbl <= 0) {
+            System.out.println(ConsoleColors.BLUE + "Veuillez saisir nombre de ligne :");
+            if (sc.hasNextInt()) {
+                nbl = sc.nextInt();
+                if (nbl <= 0) {
+                    System.out.println(ConsoleColors.RED + "Il est nécessaire de saisir un nombre de ligne supérieur a 0:");
+                }
+            }
+            else {
+                sc.next();
+                System.out.println(ConsoleColors.RED +"Il est nécessaire de saisir nombre de ligne valide:");
+            }
         }
-        in = sc.nextInt();
-        return in;
+        return nbl;
     }
+
+    /**
+     *
+     * @param tab
+     */
     public void affiche(int[][] tab) {
         System.out.println(ConsoleColors.RED + Arrays.deepToString(tab)
                 .replace("], ", "\n")
@@ -53,22 +76,35 @@ public class Ihm {
         clearScreen();
         System.out.println(s + " gagne ! \uD83C\uDF8A \uD83C\uDF89 ");
     }
-    public void joue(Partie partie) {
+    public Coup coup(String nomJoueur) {
         Coup c = new Coup();
         Scanner sc = new Scanner(System.in);
-        System.out.println(ConsoleColors.YELLOW + partie.getJoueur().getNom() + " : à vous de jouer un coup" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW + nomJoueur + " : à vous de jouer un coup" + ConsoleColors.RESET);
 
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir un coup sous la forme 'm n' où m est la ligne choisie et n le nombre d'allumettes à retirer sur cette ligne"+ ConsoleColors.RESET);
-        while (!sc.hasNext() && !c.isValide(sc.nextLine(),partie)) {
-            System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
-            sc.next();
-        }
         str = sc.nextLine();
         tabStr = str.split(" ");
+        while (!str.matches("\\d+ \\d+")) {
+            System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
+            str = sc.nextLine();
+            tabStr = str.split(" ");
+            c.setLigne(Integer.parseInt(tabStr[0]));
+            c.setNbAllumettes(Integer.parseInt(tabStr[1]));
+        }
         c.setLigne(Integer.parseInt(tabStr[0]));
         c.setNbAllumettes(Integer.parseInt(tabStr[1]));
-        partie.coup(c);
-        clearScreen();
+        return c;
+    }
+    public void invalideCoup() {
+        System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
+    }
+
+    private boolean isValide(String nextLine) {
+        if (nextLine.contains("0")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void clearScreen() {
@@ -88,10 +124,16 @@ public class Ihm {
 
     public void resultat(Joueur joueur1, Joueur joueur2) {
         clearScreen();
-        System.out.println(ConsoleColors.BLUE + joueur1.getNom());
-        System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");
 
-        System.out.println(ConsoleColors.BLUE + joueur2.getNom());
-        System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");
+/*        System.out.println(ConsoleColors.BLUE + joueur1.getNom());
+        System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");*/
+        String[] headers = { "Nom", "Victoire" };
+        String[][] data = {
+                { joueur1.getNom(), String.valueOf(joueur1.getNbPartiesGagées())},
+                { joueur2.getNom(), String.valueOf(joueur2.getNbPartiesGagées())},
+        };
+        System.out.println(FlipTable.of(headers, data));
+/*        System.out.println(ConsoleColors.BLUE + joueur2.getNom());
+        System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");*/
     }
 }
