@@ -98,6 +98,17 @@ public class Ihm {
         System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
     }
 
+    public boolean IA() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour jouer en JOUEUR");
+        while (!sc.hasNextInt()) {
+            System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
+            sc.next();
+        }
+        in = sc.nextInt();
+        return in == 1;
+    }
+
     private boolean isValide(String nextLine) {
         if (nextLine.contains("0")) {
             return false;

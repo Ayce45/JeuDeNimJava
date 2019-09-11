@@ -15,6 +15,23 @@ public class Partie {
         }
     }
 
+    public int[] convertTab() {
+        int c = 0;
+        int[] tab = new int[etat.length];
+        int v = 0;
+        for (int[] x : etat) {
+            c = 0;
+            for (int y : x) {
+                if (y == 0) {
+                    c++;
+                }
+            }
+            tab[v] = c;
+            v++;
+        }
+        return tab;
+    }
+
     public int[][] getEtat() {
         return etat;
     }
@@ -52,6 +69,35 @@ public class Partie {
         if (nbAllumettes != y) {
             throw new MonException("Houston, we have a problem.");
         }
+    }
+    public Coup coupIA() {
+        int nblignes = etat.length ;
+        int ouexcl = 0;
+        Coup c = new Coup();
+        for (int l = 0;l < nblignes;l++) {
+            ouexcl ^= convertTab()[l];
+        }
+        if (ouexcl != 0) {
+            for (int l = 0;l < nblignes;l++) {
+                int nbAllumette = convertTab()[l];
+                int res = ouexcl^nbAllumette;
+                if (nbAllumette >= res) {
+                    c.setLigne(l + 1);
+                    c.setNbAllumettes(nbAllumette-res);
+                    break;
+                }
+            }
+        } else {
+            for (int l = 0;l < nblignes;l++) {
+                if (convertTab()[l] > 0) {
+                    c.setLigne(l + 1);
+                    c.setNbAllumettes(1);
+                    break;
+                }
+            }
+        }
+        System.out.println(c.toString());
+        return c;
     }
 
     public boolean isGagner() {

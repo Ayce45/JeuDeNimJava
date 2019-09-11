@@ -2,6 +2,8 @@ package fr.ayce.tp1.modele;
 
 import fr.ayce.tp1.vue.Ihm;
 
+import java.util.Arrays;
+
 public class GestionnaireJeu {
     private Joueur joueur1;
     private Joueur joueur2;
@@ -27,12 +29,6 @@ public class GestionnaireJeu {
     public void jouer() {
         int i = 0;
         while (true) {
-            if ( (i & 1) == 0 ) {
-                partie.setJoueur(joueur1);
-            }
-            else {
-                partie.setJoueur(joueur2);
-            }
             if (partie.isGagner()) {
                 ihm.gagner(partie.getJoueur().getNom());
                 partie.getJoueur().addPartiesGagnees();
@@ -45,11 +41,27 @@ public class GestionnaireJeu {
                 };
 
             }
+            if ( (i & 1) == 0 ) {
+                partie.setJoueur(joueur1);
+                partie.coupIA();
+            }
+            else {
+                if (true) {
+                    partie.setJoueur(new Joueur("IA"));
+                } else {
+                    partie.setJoueur(joueur2);
+                }
+            }
             boolean isValide = true;
             while (isValide) {
                 try {
                     affichePartie();
-                    partie.coup(ihm.coup(partie.getJoueur().getNom()));
+                    if (partie.getJoueur().getNom() == "IA") {
+                        partie.coup(partie.coupIA());
+                    } else {
+                        partie.coup(ihm.coup(partie.getJoueur().getNom()));
+                    }
+
                     isValide = false;
                 } catch (Exception e) {
                     ihm.clearScreen();

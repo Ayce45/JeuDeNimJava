@@ -28,4 +28,12 @@ public class Coup {
         System.out.println(s);
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Coup{" +
+                "ligne=" + ligne +
+                ", nbAllumettes=" + nbAllumettes +
+                '}';
+    }
 }

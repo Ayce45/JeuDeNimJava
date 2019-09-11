@@ -8,8 +8,8 @@ public class ControleurJeu {
     private GestionnaireJeu gestionnaireJeu = new GestionnaireJeu();
 
     {
-        //gestionnaireJeu.setJ1(ihm.nomJoueur("1"));
-        //gestionnaireJeu.setJ2(ihm.nomJoueur("2"));
+        gestionnaireJeu.setJ1(ihm.nomJoueur("1"));
+        gestionnaireJeu.setJ2(ihm.nomJoueur("2"));
         gestionnaireJeu.setPartie(ihm.nbLignes());
 
         gestionnaireJeu.setJ1("Evan");
