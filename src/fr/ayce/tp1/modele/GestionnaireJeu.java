@@ -37,7 +37,7 @@ public class GestionnaireJeu {
                 ihm.gagner(partie.getJoueur().getNom());
                 partie.getJoueur().addPartiesGagnees();
                 if (ihm.rejouer()) {
-                    partie = new Partie(partie.getEtat().length);
+                    partie = new Partie(ihm.nbLignes());
                     partie.setJoueur(joueur1);
                 } else {
                     ihm.resultat(joueur1, joueur2);

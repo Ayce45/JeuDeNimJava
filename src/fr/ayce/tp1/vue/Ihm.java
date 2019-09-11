@@ -73,8 +73,7 @@ public class Ihm {
         //System.out.println(Arrays.deepToString(tab));
     }
     public void gagner(String s) {
-        clearScreen();
-        System.out.println(s + " gagne ! \uD83C\uDF8A \uD83C\uDF89 ");
+        System.out.println(ConsoleColors.YELLOW+s + " gagne ! \uD83C\uDF8A \uD83C\uDF89 "+ConsoleColors.RESET);
     }
     public Coup coup(String nomJoueur) {
         Coup c = new Coup();
@@ -124,16 +123,22 @@ public class Ihm {
 
     public void resultat(Joueur joueur1, Joueur joueur2) {
         clearScreen();
-
-/*        System.out.println(ConsoleColors.BLUE + joueur1.getNom());
+/*      System.out.println(ConsoleColors.BLUE + joueur1.getNom());
+        System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");
+        System.out.println(ConsoleColors.BLUE + joueur2.getNom());
         System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");*/
+
         String[] headers = { "Nom", "Victoire" };
         String[][] data = {
                 { joueur1.getNom(), String.valueOf(joueur1.getNbPartiesGagées())},
                 { joueur2.getNom(), String.valueOf(joueur2.getNbPartiesGagées())},
         };
         System.out.println(FlipTable.of(headers, data));
-/*        System.out.println(ConsoleColors.BLUE + joueur2.getNom());
-        System.out.println(ConsoleColors.PURPLE + joueur1.getNbPartiesGagées() + " Victoire(s)");*/
+
+        if (joueur1.getNbPartiesGagées() > joueur2.getNbPartiesGagées()) {
+            gagner(joueur1.getNom());
+        } else {
+            gagner(joueur2.getNom());
+        }
     }
 }
