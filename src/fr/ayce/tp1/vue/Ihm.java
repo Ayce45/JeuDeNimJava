@@ -113,7 +113,7 @@ public class Ihm {
     public boolean rejouer() {
         Scanner sc = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
-        while (!sc.hasNextInt() && sc.nextInt() > 0) {
+        while (!sc.hasNextInt()) {
             System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
             sc.next();
         }
