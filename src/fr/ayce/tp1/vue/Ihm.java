@@ -5,7 +5,6 @@ import fr.ayce.tp1.ConsoleColors;
 import fr.ayce.tp1.modele.Coup;
 import fr.ayce.tp1.modele.Joueur;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -46,7 +45,7 @@ public class Ihm {
     public int nbLignes() {
         Scanner sc = new Scanner(System.in);
         int nbl = 0;
-        while (nbl <= 0) {
+        while (nbl <= 0 || nbl > 5) {
             System.out.println(ConsoleColors.BLUE + "Veuillez saisir nombre de ligne :");
             if (sc.hasNextInt()) {
                 nbl = sc.nextInt();
@@ -147,9 +146,10 @@ int i = 1;
      */
     public boolean IA() {
         Scanner sc = new Scanner(System.in);
-        System.out.println(ConsoleColors.BLUE + "Veuillez saisir "+ConsoleColors.RED+"1 "+ConsoleColors.BLUE+"pour jouer en"+ConsoleColors.RED +" J vs J "+ ConsoleColors.BLUE +"ou "+ ConsoleColors.YELLOW +"0 "+ConsoleColors.BLUE +"pour"+ConsoleColors.YELLOW +" J vs IA" + ConsoleColors.RESET);
+        String x = ConsoleColors.BLUE + "Veuillez saisir "+ConsoleColors.RED+"1 "+ConsoleColors.BLUE+"pour jouer en"+ConsoleColors.RED +" J vs J "+ ConsoleColors.BLUE +"ou "+ ConsoleColors.YELLOW +"0 "+ConsoleColors.BLUE +"pour"+ConsoleColors.YELLOW +" J vs IA" + ConsoleColors.RESET;
+        System.out.println(x);
         while (!sc.hasNextInt()) {
-            System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
+            System.out.println(x);
             sc.next();
         }
         in = sc.nextInt();
