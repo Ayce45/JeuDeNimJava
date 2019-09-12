@@ -3,18 +3,23 @@ package fr.ayce.tp1.controleur;
 import fr.ayce.tp1.modele.GestionnaireJeu;
 import fr.ayce.tp1.vue.Ihm;
 
+/**
+ * The type Controleur jeu.
+ */
 public class ControleurJeu {
     private Ihm ihm = new Ihm();
     private GestionnaireJeu gestionnaireJeu = new GestionnaireJeu();
 
     {
         gestionnaireJeu.setJ1(ihm.nomJoueur("1"));
-        gestionnaireJeu.setJ2(ihm.nomJoueur("2"));
+        if (ihm.IA()) {
+            gestionnaireJeu.setJ2(ihm.nomJoueur("2"));
+            gestionnaireJeu.setType("JVJ");
+        } else {
+            gestionnaireJeu.setJ2("IA");
+            gestionnaireJeu.setType("IA");
+        }
         gestionnaireJeu.setPartie(ihm.nbLignes());
-
-        gestionnaireJeu.setJ1("Evan");
-        gestionnaireJeu.setJ2("Baptou");
-        //gestionnaireJeu.setPartie(10);
         gestionnaireJeu.jouer();
     }
 }

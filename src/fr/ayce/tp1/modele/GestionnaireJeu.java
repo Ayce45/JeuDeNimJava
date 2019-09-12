@@ -4,28 +4,71 @@ import fr.ayce.tp1.vue.Ihm;
 
 import java.util.Arrays;
 
+/**
+ * The type Gestionnaire jeu.
+ */
 public class GestionnaireJeu {
     private Joueur joueur1;
     private Joueur joueur2;
     private Partie partie;
     private Ihm ihm = new Ihm();
+    private String type;
 
+    /**
+     * Sets j 1.
+     *
+     * @param s the s
+     */
     public void setJ1(String s) {
         joueur1 = new Joueur(s);
     }
 
+    /**
+     * Sets j 2.
+     *
+     * @param s the s
+     */
     public void setJ2(String s) {
         joueur2 = new Joueur(s);
     }
 
+    /**
+     * Sets partie.
+     *
+     * @param i the
+     */
     public void setPartie(int i) {
         partie = new Partie(i);
     }
 
+    /**
+     * Affiche partie.
+     */
     public void affichePartie() {
         ihm.affiche(partie.getEtat());
     }
 
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Jouer.
+     */
     public void jouer() {
         int i = 0;
         while (true) {
@@ -34,7 +77,7 @@ public class GestionnaireJeu {
                 partie.getJoueur().addPartiesGagnees();
                 if (ihm.rejouer()) {
                     partie = new Partie(ihm.nbLignes());
-                    partie.setJoueur(joueur1);
+                    i = 0;
                 } else {
                     ihm.resultat(joueur1, joueur2);
                     System.exit(0);
@@ -46,17 +89,14 @@ public class GestionnaireJeu {
                 partie.coupIA();
             }
             else {
-                if (true) {
-                    partie.setJoueur(new Joueur("IA"));
-                } else {
-                    partie.setJoueur(joueur2);
-                }
+                partie.setJoueur(joueur2);
+                partie.coupIA();
             }
             boolean isValide = true;
             while (isValide) {
                 try {
                     affichePartie();
-                    if (partie.getJoueur().getNom() == "IA") {
+                    if (type.equals("IA") && partie.getJoueur().getNom() == "IA") {
                         partie.coup(partie.coupIA());
                     } else {
                         partie.coup(ihm.coup(partie.getJoueur().getNom()));

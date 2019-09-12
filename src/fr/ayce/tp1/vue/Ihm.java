@@ -9,22 +9,30 @@ import fr.ayce.tp1.modele.Partie;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * The type Ihm.
+ */
 public class Ihm {
     private String str;
     private int in;
     private String[] tabStr;
+
+    /**
+     * Instantiates a new Ihm.
+     */
     public Ihm() {
 
     }
 
     /**
+     * Nom joueur string.
      *
-     * @param s
-     * @return String
+     * @param s the s
+     * @return the string
      */
     public String nomJoueur(String s) {
         Scanner sc = new Scanner(System.in);
-        System.out.println(ConsoleColors.BLUE + "Veuillez saisir un nom de joueur "+ s +":");
+        System.out.println(ConsoleColors.BLUE + "Veuillez saisir un nom de "+ConsoleColors.PURPLE +"joueur "+ s + ConsoleColors.BLUE +":");
         while (!sc.hasNext()) {
             sc.next();
         }
@@ -33,8 +41,9 @@ public class Ihm {
     }
 
     /**
+     * Nb lignes int.
      *
-     * @return int
+     * @return the int
      */
     public int nbLignes() {
         Scanner sc = new Scanner(System.in);
@@ -56,8 +65,9 @@ public class Ihm {
     }
 
     /**
+     * Affiche.
      *
-     * @param tab
+     * @param tab the tab
      */
     public void affiche(int[][] tab) {
         System.out.println(ConsoleColors.RED + Arrays.deepToString(tab)
@@ -67,14 +77,27 @@ public class Ihm {
                 .replace("0","|")
                 .replace("[","")
                 .replace(",","")
-                .replace(" 1", "")
-                .replace("1 ", "")
-                .replace("1", "")+ ConsoleColors.RESET);
+                .replace(" -1", "")
+                .replace("-1 ", "")
+                .replace("-1", "")+ ConsoleColors.RESET);
         //System.out.println(Arrays.deepToString(tab));
     }
+
+    /**
+     * Gagner.
+     *
+     * @param s the s
+     */
     public void gagner(String s) {
         System.out.println(ConsoleColors.YELLOW+s + " gagne ! \uD83C\uDF8A \uD83C\uDF89 "+ConsoleColors.RESET);
     }
+
+    /**
+     * Coup coup.
+     *
+     * @param nomJoueur the nom joueur
+     * @return the coup
+     */
     public Coup coup(String nomJoueur) {
         Coup c = new Coup();
         Scanner sc = new Scanner(System.in);
@@ -94,13 +117,22 @@ public class Ihm {
         c.setNbAllumettes(Integer.parseInt(tabStr[1]));
         return c;
     }
+
+    /**
+     * Invalide coup.
+     */
     public void invalideCoup() {
         System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
     }
 
+    /**
+     * Ia boolean.
+     *
+     * @return the boolean
+     */
     public boolean IA() {
         Scanner sc = new Scanner(System.in);
-        System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour jouer en JOUEUR");
+        System.out.println(ConsoleColors.BLUE + "Veuillez saisir "+ConsoleColors.RED+"1 "+ConsoleColors.BLUE+"pour jouer en"+ConsoleColors.RED +" J vs J "+ ConsoleColors.BLUE +"ou "+ ConsoleColors.YELLOW +"0 "+ConsoleColors.BLUE +"pour"+ConsoleColors.YELLOW +" J vs IA" + ConsoleColors.RESET);
         while (!sc.hasNextInt()) {
             System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
             sc.next();
@@ -109,18 +141,18 @@ public class Ihm {
         return in == 1;
     }
 
-    private boolean isValide(String nextLine) {
-        if (nextLine.contains("0")) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
+    /**
+     * Clear screen.
+     */
     public void clearScreen() {
         for (int i = 0; i < 100; ++i) System.out.println();
     }
 
+    /**
+     * Rejouer boolean.
+     *
+     * @return the boolean
+     */
     public boolean rejouer() {
         Scanner sc = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
@@ -132,6 +164,24 @@ public class Ihm {
         return in == 1;
     }
 
+/*    public String strategie() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour utiliser ou 0 pour quitter");
+        while (!sc.hasNextInt()) {
+            System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour rejouer ou 0 pour quitter");
+            sc.next();
+        }
+        in = sc.nextInt();
+        return in == 1;
+    }*/
+
+
+    /**
+     * Resultat.
+     *
+     * @param joueur1 the joueur 1
+     * @param joueur2 the joueur 2
+     */
     public void resultat(Joueur joueur1, Joueur joueur2) {
         clearScreen();
 /*      System.out.println(ConsoleColors.BLUE + joueur1.getNom());
