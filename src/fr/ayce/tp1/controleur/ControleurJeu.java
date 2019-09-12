@@ -7,8 +7,8 @@ import fr.ayce.tp1.vue.Ihm;
  * The type Controleur jeu.
  */
 public class ControleurJeu {
-    private Ihm ihm = new Ihm();
-    private GestionnaireJeu gestionnaireJeu = new GestionnaireJeu();
+    private final Ihm ihm = new Ihm();
+    private final GestionnaireJeu gestionnaireJeu = new GestionnaireJeu();
 
     {
         gestionnaireJeu.setJ1(ihm.nomJoueur("1"));

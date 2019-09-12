@@ -9,7 +9,7 @@ public class GestionnaireJeu {
     private Joueur joueur1;
     private Joueur joueur2;
     private Partie partie;
-    private Ihm ihm = new Ihm();
+    private final Ihm ihm = new Ihm();
     private String type;
 
     /**

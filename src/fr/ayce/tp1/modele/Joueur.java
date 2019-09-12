@@ -4,7 +4,7 @@ package fr.ayce.tp1.modele;
  * The type Joueur.
  */
 public class Joueur {
-    private String nom;
+    private final String nom;
     private int nbPartiesGagees;
 
     /**

@@ -7,7 +7,7 @@ import fr.ayce.tp1.MonException;
  * The type Partie.
  */
 class Partie {
-    private int[][] etat;
+    private final int[][] etat;
     private Joueur joueur;
 
     /**
