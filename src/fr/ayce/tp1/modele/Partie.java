@@ -3,13 +3,10 @@ package fr.ayce.tp1.modele;
 import fr.ayce.tp1.ConsoleColors;
 import fr.ayce.tp1.MonException;
 
-import java.io.Console;
-import java.security.InvalidParameterException;
-
 /**
  * The type Partie.
  */
-public class Partie {
+class Partie {
     private int[][] etat;
     private Joueur joueur;
 
@@ -18,7 +15,7 @@ public class Partie {
      *
      * @param nbLignes the nb lignes
      */
-    public Partie(int nbLignes) {
+    Partie(int nbLignes) {
         etat = new int[nbLignes][];
         for (int i = 1; i < etat.length + 1; i++) {
             etat[i - 1] = new int[2 * i - 1];
@@ -30,8 +27,8 @@ public class Partie {
      *
      * @return the int [ ]
      */
-    public int[] convertTab() {
-        int c = 0;
+    private int[] convertTab() {
+        int c;
         int[] tab = new int[etat.length];
         int v = 0;
         for (int[] x : etat) {
@@ -52,7 +49,7 @@ public class Partie {
      *
      * @return the int [ ] [ ]
      */
-    public int[][] getEtat() {
+    int[][] getEtat() {
         return etat;
     }
 
@@ -61,7 +58,7 @@ public class Partie {
      *
      * @return the joueur
      */
-    public Joueur getJoueur() {
+    Joueur getJoueur() {
         return joueur;
     }
 
@@ -70,19 +67,18 @@ public class Partie {
      *
      * @param joueur the joueur
      */
-    public void setJoueur(Joueur joueur) {
+    void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
 
     /**
      *
-     * @param val
-     * @return
+     * @return boolean
      */
-    private boolean isExiste(int val){
-        for(int i = 0 ; i < etat.length;i++) {
-            for (int y = 0; y < etat[i].length; y++) {
-                if (val == etat[i][y])
+    private boolean isExiste(){
+        for (int[] ints : etat) {
+            for (int anInt : ints) {
+                if (0 == anInt)
                     return true;
             }
         }
@@ -95,7 +91,7 @@ public class Partie {
      * @param c the c
      * @throws MonException the mon exception
      */
-    public void coup(Coup c) throws MonException {
+    void coup(Coup c) throws MonException {
         int y = 0;
         int i = 0;
         int nbLigne = c.getLigne() - 1;
@@ -126,7 +122,7 @@ public class Partie {
      *
      * @return the coup
      */
-    public Coup coupIA() {
+    Coup coupIA() {
         int nblignes = etat.length ;
         int ouexcl = 0;
         Coup c = new Coup();
@@ -161,12 +157,8 @@ public class Partie {
      *
      * @return the boolean
      */
-    public boolean isGagner() {
-        if (isExiste(0)) {
-            return false;
-        } else {
-            return true;
-        }
+    boolean isGagner() {
+        return !isExiste();
 
     }
 

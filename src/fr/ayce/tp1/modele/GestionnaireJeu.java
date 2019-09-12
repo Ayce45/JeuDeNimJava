@@ -2,8 +2,6 @@ package fr.ayce.tp1.modele;
 
 import fr.ayce.tp1.vue.Ihm;
 
-import java.util.Arrays;
-
 /**
  * The type Gestionnaire jeu.
  */
@@ -44,17 +42,8 @@ public class GestionnaireJeu {
     /**
      * Affiche partie.
      */
-    public void affichePartie() {
+    private void affichePartie() {
         ihm.affiche(partie.getEtat());
-    }
-
-    /**
-     * Gets type.
-     *
-     * @return the type
-     */
-    public String getType() {
-        return type;
     }
 
     /**
@@ -81,7 +70,7 @@ public class GestionnaireJeu {
                 } else {
                     ihm.resultat(joueur1, joueur2);
                     System.exit(0);
-                };
+                }
 
             }
             if ( (i & 1) == 0 ) {
@@ -96,7 +85,7 @@ public class GestionnaireJeu {
             while (isValide) {
                 try {
                     affichePartie();
-                    if (type.equals("IA") && partie.getJoueur().getNom() == "IA") {
+                    if (type.equals("IA") && partie.getJoueur().getNom().equals("IA")) {
                         partie.coup(partie.coupIA());
                     } else {
                         partie.coup(ihm.coup(partie.getJoueur().getNom()));

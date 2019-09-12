@@ -11,8 +11,6 @@ public class Coup {
      * Instantiates a new Coup.
      */
     public Coup() {
-        this.ligne = ligne;
-        this.nbAllumettes = nbAllumettes;
     }
 
     /**
@@ -20,7 +18,7 @@ public class Coup {
      *
      * @return the ligne
      */
-    public int getLigne() {
+    int getLigne() {
         return ligne;
     }
 
@@ -38,7 +36,7 @@ public class Coup {
      *
      * @return the nb allumettes
      */
-    public int getNbAllumettes() {
+    int getNbAllumettes() {
         return nbAllumettes;
     }
 
@@ -49,18 +47,6 @@ public class Coup {
      */
     public void setNbAllumettes(int nbAllumettes) {
         this.nbAllumettes = nbAllumettes;
-    }
-
-    /**
-     * Is valide boolean.
-     *
-     * @param s the s
-     * @param p the p
-     * @return the boolean
-     */
-    public boolean isValide(String s, Partie p) {
-        System.out.println(s);
-        return false;
     }
 
     @Override

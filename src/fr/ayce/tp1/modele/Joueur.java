@@ -5,16 +5,16 @@ package fr.ayce.tp1.modele;
  */
 public class Joueur {
     private String nom;
-    private int nbPartiesGagées;
+    private int nbPartiesGagees;
 
     /**
      * Instantiates a new Joueur.
      *
      * @param nom the nom
      */
-    public Joueur(String nom) {
+    Joueur(String nom) {
         this.nom = nom;
-        nbPartiesGagées = 0;
+        nbPartiesGagees = 0;
     }
 
     /**
@@ -27,19 +27,10 @@ public class Joueur {
     }
 
     /**
-     * Sets nom.
-     *
-     * @param nom the nom
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    /**
      * Add parties gagnees.
      */
-    public void addPartiesGagnees() {
-        nbPartiesGagées++;
+    void addPartiesGagnees() {
+        nbPartiesGagees++;
     }
 
     /**
@@ -47,7 +38,7 @@ public class Joueur {
      *
      * @return the int
      */
-    public int getNbPartiesGagées() {
-        return nbPartiesGagées;
+    public int getNbPartiesGagees() {
+        return nbPartiesGagees;
     }
 }

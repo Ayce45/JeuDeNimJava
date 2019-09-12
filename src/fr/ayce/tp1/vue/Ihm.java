@@ -4,7 +4,6 @@ import com.jakewharton.fliptables.FlipTable;
 import fr.ayce.tp1.ConsoleColors;
 import fr.ayce.tp1.modele.Coup;
 import fr.ayce.tp1.modele.Joueur;
-import fr.ayce.tp1.modele.Partie;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -15,7 +14,6 @@ import java.util.Scanner;
 public class Ihm {
     private String str;
     private int in;
-    private String[] tabStr;
 
     /**
      * Instantiates a new Ihm.
@@ -105,7 +103,7 @@ public class Ihm {
 
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir un coup sous la forme 'm n' où m est la ligne choisie et n le nombre d'allumettes à retirer sur cette ligne"+ ConsoleColors.RESET);
         str = sc.nextLine();
-        tabStr = str.split(" ");
+        String[] tabStr = str.split(" ");
         while (!str.matches("\\d+ \\d+")) {
             System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
             str = sc.nextLine();
@@ -191,12 +189,12 @@ public class Ihm {
 
         String[] headers = { "Nom", "Victoire" };
         String[][] data = {
-                { joueur1.getNom(), String.valueOf(joueur1.getNbPartiesGagées())},
-                { joueur2.getNom(), String.valueOf(joueur2.getNbPartiesGagées())},
+                { joueur1.getNom(), String.valueOf(joueur1.getNbPartiesGagees())},
+                { joueur2.getNom(), String.valueOf(joueur2.getNbPartiesGagees())},
         };
         System.out.println(FlipTable.of(headers, data));
 
-        if (joueur1.getNbPartiesGagées() > joueur2.getNbPartiesGagées()) {
+        if (joueur1.getNbPartiesGagees() > joueur2.getNbPartiesGagees()) {
             gagner(joueur1.getNom());
         } else {
             gagner(joueur2.getNom());
