@@ -75,11 +75,9 @@ public class GestionnaireJeu {
             }
             if ( (i & 1) == 0 ) {
                 partie.setJoueur(joueur1);
-                partie.coupIA();
             }
             else {
                 partie.setJoueur(joueur2);
-                partie.coupIA();
             }
             boolean isValide = true;
             while (isValide) {
@@ -87,6 +85,7 @@ public class GestionnaireJeu {
                     affichePartie();
                     if (type.equals("IA") && partie.getJoueur().getNom().equals("IA")) {
                         partie.coup(partie.coupIA());
+                        Thread.sleep(1000);
                     } else {
                         partie.coup(ihm.coup(partie.getJoueur().getNom()));
                     }

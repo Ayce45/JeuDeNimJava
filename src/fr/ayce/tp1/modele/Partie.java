@@ -98,7 +98,6 @@ class Partie {
         int nbAllumettes = c.getNbAllumettes();
         while (i < this.getEtat()[nbLigne].length && y < nbAllumettes) {
             if (this.getEtat()[nbLigne][i] != 1) {
-                //this.getEtat()[nbLigne][i] = 1;
                 y++;
             }
             i++;
@@ -110,7 +109,7 @@ class Partie {
         i = 0;
         while (i < this.getEtat()[nbLigne].length && y < nbAllumettes) {
             if (this.getEtat()[nbLigne][i] != 1) {
-                this.getEtat()[nbLigne][i] = -1;
+                this.getEtat()[nbLigne][i] = 1;
                 y++;
             }
             i++;
@@ -122,7 +121,7 @@ class Partie {
      *
      * @return the coup
      */
-    Coup coupIA() {
+    Coup coupIA() throws InterruptedException {
         int nblignes = etat.length ;
         int ouexcl = 0;
         Coup c = new Coup();
@@ -148,7 +147,9 @@ class Partie {
                 }
             }
         }
-        System.out.println(ConsoleColors.WHITE_BRIGHT +c.toString());
+        System.out.println(ConsoleColors.YELLOW +  "IA : à vous de jouer un coup" + ConsoleColors.RESET);
+        Thread.sleep(1000);
+        System.out.println(ConsoleColors.GREEN +c.toString());
         return c;
     }
 

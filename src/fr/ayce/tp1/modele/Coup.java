@@ -51,9 +51,6 @@ public class Coup {
 
     @Override
     public String toString() {
-        return "Coup{" +
-                "ligne=" + ligne +
-                ", nbAllumettes=" + nbAllumettes +
-                '}';
+        return ligne + " " + nbAllumettes;
     }
 }

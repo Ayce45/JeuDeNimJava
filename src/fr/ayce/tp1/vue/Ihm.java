@@ -50,8 +50,8 @@ public class Ihm {
             System.out.println(ConsoleColors.BLUE + "Veuillez saisir nombre de ligne :");
             if (sc.hasNextInt()) {
                 nbl = sc.nextInt();
-                if (nbl <= 0) {
-                    System.out.println(ConsoleColors.RED + "Il est nécessaire de saisir un nombre de ligne supérieur a 0:");
+                if (nbl <= 0 || nbl > 5) {
+                    System.out.println(ConsoleColors.RED + "Il est nécessaire de saisir un nombre de ligne supérieur à 0 et inférieure à 6:");
                 }
             }
             else {
@@ -68,17 +68,33 @@ public class Ihm {
      * @param tab the tab
      */
     public void affiche(int[][] tab) {
-        System.out.println(ConsoleColors.RED + Arrays.deepToString(tab)
+/*        System.out.println(ConsoleColors.RED + Arrays.deepToString(tab)
                 .replace("], ", "\n")
                 .replace("[[", "")
                 .replace("]]", "")
                 .replace("0","|")
                 .replace("[","")
                 .replace(",","")
-                .replace(" -1", "")
-                .replace("-1 ", "")
-                .replace("-1", "")+ ConsoleColors.RESET);
-        //System.out.println(Arrays.deepToString(tab));
+                .replace(" 1", "")
+                .replace("1 ", "")
+                .replace("1", "")+ ConsoleColors.RESET);
+        System.out.println();*/
+        System.out.print("   ");
+for (int i = 1;i <= tab.length*2-1;i++) {
+    System.out.print(ConsoleColors.PURPLE + i + " ");
+}
+        System.out.println();
+int i = 1;
+        for (int[] ta: tab) {
+            System.out.print(ConsoleColors.PURPLE + i + " ");
+            for (int t : ta) {
+                if (t == 0) {
+                    System.out.print(ConsoleColors.RED + "| ");
+                }
+            }
+            System.out.println();
+            i++;
+        }
     }
 
     /**
