@@ -9,6 +9,7 @@ import fr.ayce.tp1.MonException;
 class Partie {
     private final int[][] etat;
     private Joueur joueur;
+    private boolean contrainte;
 
     /**
      * Instantiates a new Partie.
@@ -103,7 +104,10 @@ class Partie {
             i++;
         }
         if (nbAllumettes != y) {
-            throw new MonException("Houston, we have a problem.");
+            throw new MonException("Pas assez d'allumettes sur la ligne");
+        }
+        if (contrainte && nbAllumettes > 3) {
+            throw new MonException("La contrainte de 3 allumettes n'est pas respecté ");
         }
         y = 0;
         i = 0;
@@ -164,4 +168,11 @@ class Partie {
     }
 
 
+    void setContrainte(boolean contrainte) {
+        this.contrainte = contrainte;
+    }
+
+    public boolean getContrainte() {
+        return contrainte;
+    }
 }

@@ -135,8 +135,9 @@ int i = 1;
     /**
      * Invalide coup.
      */
-    public void invalideCoup() {
+    public void invalideCoup(String s) {
         System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
+        System.out.println(s);
     }
 
     /**
@@ -178,7 +179,19 @@ int i = 1;
         return in == 1;
     }
 
-/*    public String strategie() {
+        public boolean contrainte() {
+        Scanner sc = new Scanner(System.in);
+        String x = ConsoleColors.BLUE + "Veuillez saisir 1 pour utiliser la contrainte de 3 allumettes maximum ou 0 sinon";
+        System.out.println(x);
+        while (!sc.hasNextInt()) {
+            System.out.println(x);
+            sc.next();
+        }
+        in = sc.nextInt();
+        return in == 1;
+    }
+
+/*    public boolean strategie() {
         Scanner sc = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir 1 pour utiliser ou 0 pour quitter");
         while (!sc.hasNextInt()) {

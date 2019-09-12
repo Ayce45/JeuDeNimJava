@@ -20,6 +20,7 @@ public class ControleurJeu {
             gestionnaireJeu.setType("IA");
         }
         gestionnaireJeu.setPartie(ihm.nbLignes());
+        gestionnaireJeu.setContrainte(ihm.contrainte());
         gestionnaireJeu.jouer();
     }
 }

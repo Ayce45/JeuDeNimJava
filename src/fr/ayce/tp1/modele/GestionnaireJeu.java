@@ -93,12 +93,16 @@ public class GestionnaireJeu {
                     isValide = false;
                 } catch (Exception e) {
                     ihm.clearScreen();
-                    ihm.invalideCoup();
+                    ihm.invalideCoup(e.getMessage());
                 }
             }
             ihm.clearScreen();
             i++;
         }
 
+    }
+
+    public void setContrainte(boolean contrainte) {
+        partie.setContrainte(contrainte);
     }
 }
