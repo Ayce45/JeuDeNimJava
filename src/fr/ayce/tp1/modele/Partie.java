@@ -9,7 +9,7 @@ import fr.ayce.tp1.MonException;
 class Partie {
     private final int[][] etat;
     private Joueur joueur;
-    private boolean contrainte;
+    private boolean contrainte = false;
 
     /**
      * Instantiates a new Partie.
@@ -73,10 +73,9 @@ class Partie {
     }
 
     /**
-     *
      * @return boolean
      */
-    private boolean isExiste(){
+    private boolean isExiste() {
         for (int[] ints : etat) {
             for (int anInt : ints) {
                 if (0 == anInt)
@@ -97,6 +96,9 @@ class Partie {
         int i = 0;
         int nbLigne = c.getLigne() - 1;
         int nbAllumettes = c.getNbAllumettes();
+        if (nbLigne < 0 || nbLigne > this.getEtat().length) {
+            throw new MonException("Ligne invalide");
+        }
         while (i < this.getEtat()[nbLigne].length && y < nbAllumettes) {
             if (this.getEtat()[nbLigne][i] != 1) {
                 y++;
@@ -126,24 +128,35 @@ class Partie {
      * @return the coup
      */
     Coup coupIA() throws InterruptedException {
-        int nblignes = etat.length ;
+        int nblignes = etat.length;
         int ouexcl = 0;
         Coup c = new Coup();
-        for (int l = 0;l < nblignes;l++) {
+        for (int l = 0; l < nblignes; l++) {
             ouexcl ^= convertTab()[l];
         }
         if (ouexcl != 0) {
-            for (int l = 0;l < nblignes;l++) {
+            for (int l = 0; l < nblignes; l++) {
                 int nbAllumette = convertTab()[l];
-                int res = ouexcl^nbAllumette;
+                int res = ouexcl ^ nbAllumette;
                 if (nbAllumette >= res) {
                     c.setLigne(l + 1);
-                    c.setNbAllumettes(nbAllumette-res);
-                    break;
+                    c.setNbAllumettes(nbAllumette - res);
+                    if (contrainte && nbAllumette > 3) {
+                        for (int y = 0; y < nblignes; y++) {
+                            if (convertTab()[y] > 0) {
+                                c.setLigne(y + 1);
+                                c.setNbAllumettes(1);
+                                break;
+                            }
+                        }
+                    } else {
+                        break;
+                    }
+
                 }
             }
         } else {
-            for (int l = 0;l < nblignes;l++) {
+            for (int l = 0; l < nblignes; l++) {
                 if (convertTab()[l] > 0) {
                     c.setLigne(l + 1);
                     c.setNbAllumettes(1);
@@ -151,9 +164,9 @@ class Partie {
                 }
             }
         }
-        System.out.println(ConsoleColors.YELLOW +  "IA : à vous de jouer un coup" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW + "IA : à vous de jouer un coup" + ConsoleColors.RESET);
         Thread.sleep(1000);
-        System.out.println(ConsoleColors.GREEN +c.toString());
+        System.out.println(ConsoleColors.GREEN + c.toString());
         return c;
     }
 

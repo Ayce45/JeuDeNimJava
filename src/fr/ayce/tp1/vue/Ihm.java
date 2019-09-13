@@ -117,8 +117,9 @@ int i = 1;
         System.out.println(ConsoleColors.YELLOW + nomJoueur + " : à vous de jouer un coup" + ConsoleColors.RESET);
 
         System.out.println(ConsoleColors.BLUE + "Veuillez saisir un coup sous la forme 'm n' où m est la ligne choisie et n le nombre d'allumettes à retirer sur cette ligne"+ ConsoleColors.RESET);
-        str = sc.nextLine();
-        String[] tabStr = str.split(" ");
+        //str = sc.nextLine();
+        //String[] tabStr = str.split(" ");
+        /*
         while (!str.matches("\\d+ \\d+")) {
             System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
             str = sc.nextLine();
@@ -127,7 +128,27 @@ int i = 1;
             c.setNbAllumettes(Integer.parseInt(tabStr[1]));
         }
         c.setLigne(Integer.parseInt(tabStr[0]));
-        c.setNbAllumettes(Integer.parseInt(tabStr[1]));
+        c.setNbAllumettes(Integer.parseInt(tabStr[1]));*/
+        boolean valide = false;
+        int ligne = 0;
+        int nbAllu = 0;
+        while (!valide) {
+            if (sc.hasNextInt()) {
+              ligne = sc.nextInt();
+              if (sc.hasNextInt()) {
+                nbAllu = sc.nextInt();
+                valide = true;
+              } else {
+                  System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
+                  sc.nextLine();
+              }
+            } else {
+                System.out.println(ConsoleColors.RED +"Veuillez saisir un coup valide, Ex : 1 2:" + ConsoleColors.RESET);
+                sc.nextLine();
+            }
+        }
+        c.setLigne(ligne);
+        c.setNbAllumettes(nbAllu);
         return c;
     }
 

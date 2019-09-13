@@ -1,5 +1,6 @@
 package fr.ayce.tp1.modele;
 
+import fr.ayce.tp1.MonException;
 import fr.ayce.tp1.vue.Ihm;
 
 /**
@@ -91,7 +92,7 @@ public class GestionnaireJeu {
                     }
 
                     isValide = false;
-                } catch (Exception e) {
+                } catch (MonException | InterruptedException e) {
                     ihm.clearScreen();
                     ihm.invalideCoup(e.getMessage());
                 }
