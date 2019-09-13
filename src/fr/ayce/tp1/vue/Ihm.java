@@ -165,16 +165,21 @@ int i = 1;
      *
      * @return the boolean
      */
-    public boolean IA() {
+    public int IA() {
         Scanner sc = new Scanner(System.in);
-        String x = ConsoleColors.BLUE + "Veuillez saisir "+ConsoleColors.RED+"1 "+ConsoleColors.BLUE+"pour jouer en"+ConsoleColors.RED +" J vs J "+ ConsoleColors.BLUE +"ou "+ ConsoleColors.YELLOW +"0 "+ConsoleColors.BLUE +"pour"+ConsoleColors.YELLOW +" J vs IA" + ConsoleColors.RESET;
+        String x = ConsoleColors.BLUE + "Veuillez saisir "+ ConsoleColors.RED +"1 "+ConsoleColors.BLUE+"pour jouer en"+ConsoleColors.RED +" J vs J "
+                + ConsoleColors.BLUE +"ou "+ ConsoleColors.YELLOW +"0 "+ConsoleColors.BLUE +"pour"+ConsoleColors.YELLOW +" J vs IA"
+                + ConsoleColors.BLUE + " ou " +  ConsoleColors.PURPLE + "3 " + ConsoleColors.BLUE +"pour " + ConsoleColors.PURPLE +"IA vs IA "
+                + ConsoleColors.BLUE + "ou " + ConsoleColors.GREEN + "4 "+ ConsoleColors.BLUE + "pour " + ConsoleColors.GREEN + "IAN vs IAN "
+                + ConsoleColors.BLUE + "ou " + ConsoleColors.CYAN + "5 "+ ConsoleColors.BLUE + "pour " + ConsoleColors.CYAN + "IAN vs IA"
+                + ConsoleColors.BLUE + "." + ConsoleColors.RESET;
         System.out.println(x);
         while (!sc.hasNextInt()) {
             System.out.println(x);
             sc.next();
         }
         in = sc.nextInt();
-        return in == 1;
+        return in;
     }
 
     /**

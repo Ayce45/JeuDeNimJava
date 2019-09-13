@@ -84,11 +84,21 @@ public class GestionnaireJeu {
             while (isValide) {
                 try {
                     affichePartie();
-                    if (type.equals("IA") && partie.getJoueur().getNom().equals("IA")) {
-                        partie.coup(partie.coupIA());
+                    if (type.equals("IA") && partie.getJoueur().getNom().contains("IA")) {
+                        if (partie.getJoueur().getNom().contains("IAN")) {
+                            partie.coup(partie.coupIAn(partie.getJoueur().getNom()));
+                        } else {
+                            partie.coup(partie.coupIA(partie.getJoueur().getNom()));
+                        }
+
                         Thread.sleep(1000);
                     } else {
-                        partie.coup(ihm.coup(partie.getJoueur().getNom()));
+                        if (type.equals("IA") && partie.getJoueur().getNom().contains("IA")) {
+                            partie.coup(partie.coupIA(partie.getJoueur().getNom()));
+                            Thread.sleep(1000);
+                        } else {
+                            partie.coup(ihm.coup(partie.getJoueur().getNom()));
+                        }
                     }
 
                     isValide = false;

@@ -125,9 +125,11 @@ class Partie {
     /**
      * Coup ia coup.
      *
+     * @param s the s
      * @return the coup
+     * @throws InterruptedException the interrupted exception
      */
-    Coup coupIA() throws InterruptedException {
+    Coup coupIA(String s) throws InterruptedException {
         int nblignes = etat.length;
         int ouexcl = 0;
         Coup c = new Coup();
@@ -164,7 +166,35 @@ class Partie {
                 }
             }
         }
-        System.out.println(ConsoleColors.YELLOW + "IA : à vous de jouer un coup" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW + s + " : à vous de jouer un coup" + ConsoleColors.RESET);
+        Thread.sleep(1000);
+        System.out.println(ConsoleColors.GREEN + c.toString());
+        return c;
+    }
+
+    /**
+     * Coup ia coup.
+     *
+     * @return the coup
+     * @throws InterruptedException the interrupted exception
+     */
+    Coup coupIAn(String s) throws InterruptedException {
+        Coup c = new Coup();
+        int ligne;
+        int nbAllu;
+        boolean valide = false;
+        while (!valide) {
+            ligne = (int) Math.floor(Math.random() * (etat.length)) + 1;
+            if (convertTab()[ligne - 1] != 0) {
+                nbAllu = (int) Math.floor(Math.random() * (convertTab()[ligne - 1] - 1)) + 1;
+                if (!contrainte || nbAllu <= 3) {
+                    c.setNbAllumettes(nbAllu);
+                    c.setLigne(ligne);
+                    valide = true;
+                }
+            }
+        }
+        System.out.println(ConsoleColors.YELLOW + s + " : à vous de jouer un coup" + ConsoleColors.RESET);
         Thread.sleep(1000);
         System.out.println(ConsoleColors.GREEN + c.toString());
         return c;
@@ -181,10 +211,20 @@ class Partie {
     }
 
 
+    /**
+     * Sets contrainte.
+     *
+     * @param contrainte the contrainte
+     */
     void setContrainte(boolean contrainte) {
         this.contrainte = contrainte;
     }
 
+    /**
+     * Gets contrainte.
+     *
+     * @return the contrainte
+     */
     public boolean getContrainte() {
         return contrainte;
     }
