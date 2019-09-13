@@ -8,20 +8,17 @@
 
 > Le programme Java permettant de jouer au jeu de Nim en mode console.
 
-### 🏠 [Homepage](ayce.fr)
+## Comment jouer
 
-## Install
+Pour jouer au jeu de Nim, nous choisissons un nombre de lignes au départ et nous plaçons un nombre impair d'allumettes par ligne. Sur l’ième ligne, nous placerons 2*i - 1 allumettes(i>=1). À chaque tour, un des joueurs sélectionne une ligne non vide et retire au moins une allumette. Le joueur gagnant est celui qui prend la dernière allumette.
 
-```sh
-npm install
-```
-
-## Author
+## Auteur
 
 👤 **Ayce**
 
 * Twitter: [@aycefr](https://twitter.com/aycefr)
 * Github: [@ayce45](https://github.com/ayce45)
+* Site: [Ayce](ayce.fr)
 
 ## Show your support
 
