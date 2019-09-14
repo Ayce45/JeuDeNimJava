@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Jeu de Nim 👋</h1>
+<h1 align="center">Bienvenue dans le Jeu de Nim 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-5-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/aycefr">
